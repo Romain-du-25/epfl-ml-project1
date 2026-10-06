@@ -43,15 +43,8 @@ def mean_squared_error_sgd(y, tx, initial_w, max_iters, gamma):
 
 
 def least_squares(y, tx):
-    """Compute the least-squares solution using the normal equations.
-
-    Args:
-        y: Target values as a one-dimensional array of shape (n_samples,).
-        tx: Design matrix of shape (n_samples, n_features).
-
-    Returns:
-        A tuple ``(w, loss)`` containing the fitted weights and their MSE loss.
-    """
+    """Compute the least-squares solution using the normal equations."""
+    
     gram_matrix = tx.T @ tx
     right_hand_side = tx.T @ y
     w = np.linalg.solve(gram_matrix, right_hand_side)
@@ -61,20 +54,8 @@ def least_squares(y, tx):
 
 
 def ridge_regression(y, tx, lambda_):
-    """Compute the ridge-regression solution using the normal equations.
-
-    The optimized objective is the MSE plus ``lambda_ * ||w||^2``. As required
-    by the project specification, the returned loss is only the MSE and does
-    not include the regularization penalty.
-
-    Args:
-        y: Target values as a one-dimensional array of shape (n_samples,).
-        tx: Design matrix of shape (n_samples, n_features).
-        lambda_: Non-negative regularization strength.
-
-    Returns:
-        A tuple ``(w, loss)`` containing the fitted weights and their MSE loss.
-    """
+    """Compute the ridge-regression solution using the normal equations."""
+    
     n_samples, n_features = tx.shape
     regularizer = 2 * n_samples * lambda_ * np.eye(n_features)
     gram_matrix = tx.T @ tx + regularizer
