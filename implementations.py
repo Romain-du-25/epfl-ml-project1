@@ -44,7 +44,7 @@ def mean_squared_error_sgd(y, tx, initial_w, max_iters, gamma):
 
 def least_squares(y, tx):
     """Compute the least-squares solution using the normal equations."""
-    
+
     gram_matrix = tx.T @ tx
     right_hand_side = tx.T @ y
     w = np.linalg.solve(gram_matrix, right_hand_side)
@@ -55,7 +55,7 @@ def least_squares(y, tx):
 
 def ridge_regression(y, tx, lambda_):
     """Compute the ridge-regression solution using the normal equations."""
-    
+
     n_samples, n_features = tx.shape
     regularizer = 2 * n_samples * lambda_ * np.eye(n_features)
     gram_matrix = tx.T @ tx + regularizer
@@ -65,8 +65,11 @@ def ridge_regression(y, tx, lambda_):
     loss = _mse_loss(y, tx, w)
     return w, loss
 
+
 def _sigmoid(t):
-    out = np.empty_like(t, dtype=float) #fill with garbage to avoid unnecessary allocations
+    out = np.empty_like(
+        t, dtype=float
+    )  # fill with garbage to avoid unnecessary allocations
     pos = t >= 0
     out[pos] = 1.0 / (1.0 + np.exp(-t[pos]))
     exp_t = np.exp(t[~pos])
@@ -77,7 +80,9 @@ def _sigmoid(t):
 def _logistic_loss(y, tx, w):
     """Mean negative log-likelihood."""
     z = tx @ w
-    return np.mean(np.logaddexp(0, z) - y * z) #computes log(1 + exp(z)) in a numerically stable way
+    return np.mean(
+        np.logaddexp(0, z) - y * z
+    )  # computes log(1 + exp(z)) in a numerically stable way
 
 
 def _logistic_gradient(y, tx, w):
