@@ -11,8 +11,7 @@ def inspect_data(X, name="Dataset"):
     missing_per_feature = np.isnan(X).sum(axis=0)
     constant_features = np.all(X == X[0], axis=0)
 
-    print("Features containing NaN:",
-          np.sum(missing_per_feature > 0))
+    print("Features containing NaN:", np.sum(missing_per_feature > 0))
     print("Constant features:", np.sum(constant_features))
 
     # Useful for identifying suspicious encoded values.
@@ -73,9 +72,7 @@ def transform_data(X, params):
     X = X[:, params["keep_variable"]]
 
     # Standardize using training statistics.
-    X = (
-        X - params["scaling_means"]
-    ) / params["stds"]
+    X = (X - params["scaling_means"]) / params["stds"]
 
     # Add the intercept column for logistic regression.
     X = np.column_stack((np.ones(X.shape[0]), X))
