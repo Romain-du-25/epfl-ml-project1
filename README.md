@@ -1,7 +1,7 @@
 
 # EPFL ML Project 1 – Heart attack prediction
 
-Machine Learning (CS-433), EPFL. Team: <name 1>, <name 2>, <name 3>.
+Machine Learning (CS-433), EPFL. Team: Romain LABBE, Hugo Passera, Cristian.
 
 The goal is to predict heart attack risk from health survey data (more than 300,000 individuals), using only NumPy implementations of the course methods. Predictions are scored on AIcrowd (F1 score).
 
